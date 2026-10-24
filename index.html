@@ -95,6 +95,25 @@ select{border:1px solid var(--line);border-radius:6px;padding:6px 8px;background
   .count{margin-left:0}
   .foot{padding:0 16px 32px}
 }
+
+.insights{padding:8px 24px 28px;border-bottom:1px solid var(--line)}
+.insights summary{cursor:pointer;list-style:none;padding:20px 0 8px}
+.insights summary::-webkit-details-marker{display:none}
+.insights summary .kicker{display:block;margin-bottom:6px}
+.ins-title{font-size:clamp(22px,3vw,30px);font-weight:600;line-height:1.15}
+.insights summary::after{content:"Свернуть";display:inline-block;margin-left:12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.insights details:not([open]) summary::after{content:"Развернуть"}
+.ins-note{font-size:14px;color:var(--ink-2);max-width:900px;margin:8px 0 0}
+.ins-h{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:24px 0 10px}
+.ins-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:1px solid var(--line-strong);max-width:1200px}
+.ins-grid li{padding:14px 18px 14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ins-grid b{font-size:15px;font-weight:600}
+.ins-grid span:not(.tag){font-size:14px;color:var(--ink-2)}
+.ins-table{overflow-x:auto;max-width:1200px}
+.ins-table table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.45;min-width:760px}
+.ins-table th,.ins-table td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.ins-table th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:600;border-bottom-color:var(--line-strong)}
+@media (max-width:720px){.insights{padding:4px 16px 20px}}
 </style>
 </head>
 <body>
@@ -104,6 +123,38 @@ select{border:1px solid var(--line);border-radius:6px;padding:6px 8px;background
   <p class="lead">Открытые раунды от $1M (pre-seed — Series B): YC 2026, мир, Россия и СНГ. Производство, медицина, энергетика, логистика, страхование. Отчёт с выводами лежит рядом в Markdown.</p>
   <div class="kpis" id="kpis"></div>
 </header>
+
+<section class="insights" aria-label="Закономерности и гипотезы">
+  <details open>
+    <summary><span class="kicker">Выводы</span><span class="ins-title">Закономерности рынка и <span class="marked">гипотезы</span> для России</span></summary>
+    <p class="ins-note">Метки: <span class="tag fact">факт</span> из данных исследования, <span class="tag self">прогноз</span> аналитиков, <span class="tag none">гипотеза</span> — вывод, не проверен. Полная версия — <a href="https://gregoryprod.github.io/ai-startup-rounds-2026/hypotheses">сводка гипотез</a>.</p>
+
+    <h2 class="ins-h">Шесть закономерностей</h2>
+    <ol class="ins-grid">
+      <li><b>Покупают выполненную работу, а не инструмент</b><span>Груз, запись, претензия, котировка, проводка. По Sequoia, на $1 софта компании тратят около $6 на услуги.</span><span class="tag fact">факт</span></li>
+      <li><b>Стартап и консалтинг сближаются</b><span>Harper, Freight Hero, Integral, Adaptive сами берут лицензию; Forgepoint и Arzana внедряют инженерами у клиента.</span><span class="tag fact">факт</span></li>
+      <li><b>Агент поверх старых систем</b><span>ERP, почта, портал, телефон остаются. Эффект — в часах и ставках; решают интеграции, а не модель.</span><span class="tag fact">факт</span></li>
+      <li><b>Вертикаль вытесняет горизонталь</b><span>В YC доля горизонтальных агентов ~50% → ~10% за год. Gartner: больше 40% агентских проектов свернут к 2027.</span><span class="tag self">прогноз</span></li>
+      <li><b>Доказательств мало даже у лидеров</b><span>Клиентов называют в 37% сделок, независимо подтверждены — 6,5%.</span><span class="tag fact">факт</span></li>
+      <li><b>В России другая экономика</b><span>5,67 млрд ₽ венчура за 9 месяцев, в энергетике и страховании — ноль сделок. ИИ пробует половина МСП, платит ~10%.</span><span class="tag fact">факт</span></li>
+    </ol>
+
+    <h2 class="ins-h">Гипотезы для проверки</h2>
+    <div class="ins-table"><table>
+      <thead><tr><th>#</th><th>Гипотеза</th><th>Почему сильная</th><th>Первый тест</th><th>Когда отказаться</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>«Возвращаем деньги»</b>: аудит счетов логистики, претензии к маркетплейсам, счета за электроэнергию; оплата % от возвращённого</td><td>Клиент не платит без результата — продаётся даже в спад. Opereit нашла &gt;$200K на первом аудите</td><td>Бесплатно разобрать документы 3 селлеров за 3 месяца</td><td>Меньше 100 тыс. ₽ к возврату на селлера</td></tr>
+        <tr><td>2</td><td><b>AI-регистратура для частных клиник</b>: голос, запись, возврат пациентов</td><td>Топ обоих исследований, подтверждённые аналоги Vocca и InTouchNow; голос не зависит от мессенджеров</td><td>«Тайный покупатель» в 20 клиник, доля пропущенных звонков</td><td>Пропущено &lt;10% звонков или нет бюджета</td></tr>
+        <tr><td>3</td><td><b>Агенты снабжения поверх почты и 1С</b> для заводов</td><td>Крупнейший кластер в производстве, ближе всего к консалтингу</td><td>10 интервью со снабжением заводов с выручкой 1–10 млрд ₽</td><td>КП и счета уже обрабатываются автоматически</td></tr>
+        <tr><td>4</td><td><b>Партнёрство вместо лицензии</b>: бухгалтерия, таможня, страховой брокер за долю выручки</td><td>Западные AI-native сервисы берут лицензию сами; в России быстрее пара с лицензированной фирмой</td><td>Одна бухфирма на 100–300 клиентов, замер часов на 10 клиентах</td><td>Экономия времени &lt;30%</td></tr>
+        <tr><td>5</td><td><b>Доказательства как преимущество</b></td><td>Даже на Западе подтверждено 6,5%. 2–3 кейса с эффектом в рублях и названными клиентами выделяют среди интеграторов</td><td>Каждый пилот — публичный кейс «до и после»</td><td>—</td></tr>
+        <tr><td>6</td><td><b>Одна отрасль вместо «AI для всех»</b></td><td>Горизонталь уходит, коробочных агентов делают Сбер и Just AI</td><td>Выбрать отрасль по итогам гипотез 1–3</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <p class="ins-note"><span class="tag none">гипотеза</span> Быстрее всего проверить 1 и 2 — за 4–6 недель. Чего не знаем: готовность платить в России не измерена ни по одной нише; трекшн западных компаний почти весь со слов самих компаний.</p>
+  </details>
+</section>
+
 
 <section class="controls" aria-label="Фильтры">
   <div class="row">
